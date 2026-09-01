@@ -16,7 +16,6 @@ jobs:
       run: |
         sudo apt-get update -qq
         sudo apt-get install -y -qq openjdk-17-jdk 2>/dev/null
-        java -version
     
     - name: Download Android SDK
       run: |
@@ -26,25 +25,25 @@ jobs:
         unzip -q cmdline-tools.zip
         mkdir -p cmdline-tools/latest
         mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || true
-        echo "sdk.dir=$PWD" > local.properties
     
     - name: Setup Android SDK
-      env:
-        ANDROID_HOME: ${{ github.workspace }}/android-sdk
       run: |
+        export ANDROID_HOME=${{ github.workspace }}/android-sdk
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses 2>/dev/null || true
-        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" 2>&1 | tail -5
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0"
     
-    - name: Build with Gradle
+    - name: Build APK
       env:
         ANDROID_HOME: ${{ github.workspace }}/android-sdk
-        GRADLE_OPTS: -Dorg.gradle.daemon=false
       run: |
-        ./gradlew assembleDebug --no-daemon --info 2>&1 | tail -100
+        export ANDROID_HOME=${{ github.workspace }}/android-sdk
+        echo "android.dir=$ANDROID_HOME" > local.properties
+        ./gradlew assembleDebug --no-daemon 2>&1
+        echo "=== Build Output ==="
+        ls -la app/build/outputs/apk/debug/ 2>/dev/null || echo "APK not found"
     
     - name: Upload APK
-      
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: LABMITM
         path: app/build/outputs/apk/debug/app-debug.apk
