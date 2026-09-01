@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔍 Network Scanner"
+        android:textColor="@color/accent_green"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnScan"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="START SCAN"
+        android:background="#238636"
+        android:textColor="#FFF"
+        android:layout_marginBottom="12dp"/>
+
+    <ListView
+        android:id="@+id/lvDevices"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_card"
+        android:divider="@color/border_default"
+        android:dividerHeight="1dp"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="BACK"
+        android:background="#484F58"
+        android:textColor="#FFF"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>

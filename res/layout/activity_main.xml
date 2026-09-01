@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@color/bg_card"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="🛡️ LAB MITM"
+                android:textColor="@color/accent_cyan"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚠️ NON-ROOT"
+                android:textColor="@color/accent_yellow"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!-- Network Info Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg_card"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📶 NETWORK INFO"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvWifiName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SSID: —"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP: —"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvGateway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gateway: —"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg_card"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚔️ ATTACK OPTIONS"
+                android:textColor="@color/accent_red"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnScan"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="🔍 Network Scan"
+                android:textColor="#FFF"
+                android:background="#238636"
+                android:layout_marginBottom="6dp"/>
+
+            <Button
+                android:id="@+id/btnTraffic"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="📡 Traffic Monitor"
+                android:textColor="#FFF"
+                android:background="#1F6FEB"
+                android:layout_marginBottom="6dp"/>
+
+            <Button
+                android:id="@+id/btnProxy"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="🔒 Proxy Setup"
+                android:textColor="#FFF"
+                android:background="#6E40C9"
+                android:layout_marginBottom="6dp"/>
+
+            <Button
+                android:id="@+id/btnVPN"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="🌐 VPN MITM Guide"
+                android:textColor="#FFF"
+                android:background="#8957E5"
+                android:layout_marginBottom="6dp"/>
+
+            <Button
+                android:id="@+id/btnADB"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="💻 ADB Proxy Guide"
+                android:textColor="#FFF"
+                android:background="#316DCA"
+                android:layout_marginBottom="6dp"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="⚙️ Settings"
+                android:textColor="#FFF"
+                android:background="#484F58"/>
+        </LinearLayout>
+
+        <!-- Log Panel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:background="@color/bg_log"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 LOG"
+                android:textColor="@color/accent_green"
+                android:textSize="10sp"
+                android:layout_marginBottom="4dp"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/accent_green"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:textIsSelectable="true"/>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
