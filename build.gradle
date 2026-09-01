@@ -1,24 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.application' version '8.1.0' apply false
 }
 
-android {
-    namespace 'com.lab.mitm'
-    compileSdk 29
-
-    defaultConfig {
-        applicationId "com.lab.mitm"
-        minSdk 21
-        targetSdk 29
-    }
-    
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-
-repositories {
-    google()
-    mavenCentral()
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
