@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.lab.mitm'
+    compileSdk 29
+
+    defaultConfig {
+        applicationId "com.lab.mitm"
+        minSdk 21
+        targetSdk 29
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
