@@ -5,64 +5,30 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-env:
-  JAVA_VERSION: '17'
-  ANDROID_COMPILE_SDK: 34
-  ANDROID_BUILD_TOOLS: 34.0.0
-
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
       
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v3
       
       - name: Create local.properties
-        run: |
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
       
-      - name: Build Debug APK
+      - name: Build with Gradle
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon -q
       
-      - name: Check APK
-        run: |
-          ls -la app/build/outputs/apk/debug/
-      
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: LABMITM-debug
+          name: LABMITM
           path: app/build/outputs/apk/debug/app-debug.apk
-      
-      - name: Upload to Release
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          echo "Creating release..."
-          ./gradlew assembleDebug --no-daemon
-          curl -sL -H "Authorization: token ${{ github.token }}" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary @app/build/outputs/apk/debug/app-debug.apk \
-            "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets?name=app-debug.apk"
